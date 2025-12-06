@@ -6,8 +6,6 @@ import (
 	"os"
 )
 
-// ---- Operator Functions ----
-
 func add(a, b float64) float64 {
 	return a + b
 }
@@ -27,11 +25,9 @@ func divide(a, b float64) (float64, error) {
 	return a / b, nil
 }
 
-// ---- Main Program ----
-
 func main() {
 
-	reader := bufio.NewReader(os.Stdin) // used to clear buffer
+	reader := bufio.NewReader(os.Stdin)
 
 	var number1, number2 float64
 	var operator string
@@ -39,33 +35,29 @@ func main() {
 	fmt.Println("Welcome To CLI Calculator")
 	fmt.Println("Input Only Numbers")
 
-	for { // loop starts
+	for {
 
-		// First number
 		fmt.Print("Enter the first number: ")
 		_, err1 := fmt.Scanln(&number1)
 		if err1 != nil {
 			fmt.Println("Error: First input is NOT a number.")
 			fmt.Println("Please try again.\n")
-			reader.ReadString('\n') // <<< FIX: clears invalid input
+			reader.ReadString('\n')
 			continue
 		}
 
-		// Second number
 		fmt.Print("Enter the second number: ")
 		_, err2 := fmt.Scanln(&number2)
 		if err2 != nil {
 			fmt.Println("Error: Second input is NOT a number.")
 			fmt.Println("Please try again.\n")
-			reader.ReadString('\n') // <<< FIX: clears invalid input
+			reader.ReadString('\n')
 			continue
 		}
 
-		// Operator
 		fmt.Print("Enter operator ( + - * / ): ")
 		fmt.Scanln(&operator)
 
-		// Perform the operation
 		switch operator {
 		case "+":
 			result := add(number1, number2)
@@ -92,7 +84,6 @@ func main() {
 			continue
 		}
 
-		// Ask user if they want to continue
 		var again string
 		fmt.Print("\nDo you want to calculate again? (yes/no): ")
 		fmt.Scanln(&again)
@@ -104,4 +95,5 @@ func main() {
 
 		fmt.Println()
 	}
+
 }
